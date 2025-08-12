@@ -1,0 +1,63 @@
+<!-- templates/edit_bill.html -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Bill{% endblock %}
+
+{% block content %}
+<h2>Edit Bill Details</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.bill_date.label }} {{ form.bill_date(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.bill_number.label }} {{ form.bill_number(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.electricity_usage_value.label }} {{ form.electricity_usage_value(class="form-control") }}
+        {{ form.electricity_usage_unit.label }} {{ form.electricity_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.water_usage_value.label }} {{ form.water_usage_value(class="form-control") }}
+        {{ form.water_usage_unit.label }} {{ form.water_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.methane_usage_value.label }} {{ form.methane_usage_value(class="form-control") }}
+        {{ form.methane_usage_unit.label }} {{ form.methane_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.oil_usage_value.label }} {{ form.oil_usage_value(class="form-control") }}
+        {{ form.oil_usage_unit.label }} {{ form.oil_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.coal_usage_value.label }} {{ form.coal_usage_value(class="form-control") }}
+        {{ form.coal_usage_unit.label }} {{ form.coal_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.industrial_waste_value.label }} {{ form.industrial_waste_value(class="form-control") }}
+        {{ form.industrial_waste_unit.label }} {{ form.industrial_waste_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.trade_co2_value.label }} {{ form.trade_co2_value(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.natural_gas_usage_value.label }} {{ form.natural_gas_usage_value(class="form-control") }}
+        {{ form.natural_gas_usage_unit.label }} {{ form.natural_gas_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.petrol_usage_value.label }} {{ form.petrol_usage_value(class="form-control") }}
+        {{ form.petrol_usage_unit.label }} {{ form.petrol_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.diesel_usage_value.label }} {{ form.diesel_usage_value(class="form-control") }}
+        {{ form.diesel_usage_unit.label }} {{ form.diesel_usage_unit(class="form-select") }}
+    </div>
+    <div class="mb-3">
+        {{ form.billing_period_start.label }} {{ form.billing_period_start(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.billing_period_end.label }} {{ form.billing_period_end(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

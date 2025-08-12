@@ -1,0 +1,31 @@
+<!-- templates/leaderboard.html -->
+{% extends 'base.html' %}
+
+{% block title %}Leaderboard{% endblock %}
+
+{% block content %}
+<h2>Leaderboard</h2>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Company</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in leaderboard %}
+        <tr>
+            <td>{{ entry.rank }}</td>
+            <td>
+                {% if entry.logo_path %}
+                <img src="{{ url_for('uploaded_file', filename=entry.logo_path.split('/')[-1]) }}" alt="Logo" width="30" height="30">
+                {% endif %}
+                {{ entry.company_name }}
+            </td>
+            <td>{{ entry.score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

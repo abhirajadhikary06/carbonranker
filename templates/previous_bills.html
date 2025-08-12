@@ -1,0 +1,42 @@
+<!-- templates/previous_bills.html -->
+{% extends 'base.html' %}
+
+{% block title %}Previous Bills{% endblock %}
+
+{% block content %}
+<h2>Previous Bills</h2>
+{% if bills %}
+<div class="row">
+    {% for bill in bills %}
+    <div class="col-md-4 mb-4">
+        <div class="card bg-dark text-light">
+            {% if bill.bill_file_path %}
+            <img src="/uploads/bills/{{ bill.bill_file_path | basename }}" class="card-img-top" alt="Bill Image" style="height: 200px; object-fit: contain;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">Bill #{{ bill.bill_number or 'N/A' }}</h5>
+                <p class="card-text">
+                    <strong>Date:</strong> {{ bill.bill_date or 'N/A' }}<br>
+                    <strong>Uploaded At:</strong> {{ bill.uploaded_at.strftime('%Y-%m-%d %H:%M') }}<br>
+                    <strong>Total Emission (kg CO2e):</strong> {{ bill.total_emission_kgco2e }}<br>
+                    <strong>Electricity:</strong> {{ bill.electricity_usage_value }} {{ bill.electricity_usage_unit }}<br>
+                    <strong>Water:</strong> {{ bill.water_usage_value }} {{ bill.water_usage_unit }}<br>
+                    <strong>Methane:</strong> {{ bill.methane_usage_value }} {{ bill.methane_usage_unit }}<br>
+                    <strong>Oil:</strong> {{ bill.oil_usage_value }} {{ bill.oil_usage_unit }}<br>
+                    <strong>Coal:</strong> {{ bill.coal_usage_value }} {{ bill.coal_usage_unit }}<br>
+                    <strong>Industrial Waste:</strong> {{ bill.industrial_waste_value }} {{ bill.industrial_waste_unit }}<br>
+                    <strong>Trade CO2:</strong> {{ bill.trade_co2_value }} tons<br>
+                    <strong>Natural Gas:</strong> {{ bill.natural_gas_usage_value }} {{ bill.natural_gas_usage_unit }}<br>
+                    <strong>Petrol:</strong> {{ bill.petrol_usage_value }} {{ bill.petrol_usage_unit }}<br>
+                    <strong>Diesel:</strong> {{ bill.diesel_usage_value }} {{ bill.diesel_usage_unit }}<br>
+                    <strong>Billing Period:</strong> {{ bill.billing_period_start }} to {{ bill.billing_period_end }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No previous bills found.</p>
+{% endif %}
+{% endblock %}

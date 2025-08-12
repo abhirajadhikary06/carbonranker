@@ -1,0 +1,15 @@
+<!-- templates/upload.html -->
+{% extends 'base.html' %}
+
+{% block title %}Upload Bill{% endblock %}
+
+{% block content %}
+<h2>Upload Bill</h2>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.bill_file.label }} {{ form.bill_file(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

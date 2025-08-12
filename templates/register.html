@@ -1,0 +1,27 @@
+<!-- templates/register.html -->
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2>Register Company</h2>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.company_name.label }} {{ form.company_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.email.label }} {{ form.email(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.password.label }} {{ form.password(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.confirm_password.label }} {{ form.confirm_password(class="form-control") }}
+    </div>
+    <div class="mb-3">
+        {{ form.logo.label }} {{ form.logo(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

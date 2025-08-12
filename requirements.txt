@@ -1,0 +1,11 @@
+# requirements.txt
+Flask
+Flask-Login
+Flask-SQLAlchemy
+Werkzeug
+requests
+google-generativeai
+pandas
+python-dotenv
+PyPDF2
+pdf2image
