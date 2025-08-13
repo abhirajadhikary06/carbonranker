@@ -219,10 +219,16 @@ def calculate_emissions(data):
     return {'co2_tonnes': co2_tonnes, 'emission_kgco2e': emission_kgco2e}
 
 def compute_score(total_emission, bill_count):
-    # Score = max(0, 100 - (total_emission / scale)) + bill_count_bonus
-    # Scale: 5000.0 kg CO2e as reference
-    scale = 5000.0
-    emission_score = 100 - (total_emission / scale * 100)
+    # Return 0 if no bills uploaded
+    if bill_count == 0 or total_emission == 0:
+        return 0
+    all_emissions = [sum(b.total_emission_kgco2e for b in BillRecord.query.filter_by(user_id=u.id).all())
+                     for u in User.query.all()]
+    if not all_emissions or total_emission is None:
+        return 0
+    rank = sum(1 for e in all_emissions if e > total_emission)
+    percentile = rank / len(all_emissions)
+    emission_score = percentile * 100
     bill_bonus = min(bill_count * 5, 25)
     score = emission_score + bill_bonus
     return max(0, min(100, round(score, 2)))
