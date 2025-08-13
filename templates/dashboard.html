@@ -29,52 +29,7 @@
         </div>
     </div>
 </div>
-<div class="row mt-4">
-    <div class="col-md-12">
-        <h3>Previous Bills</h3>
-        <div class="accordion" id="previousBillsAccordion">
-            {% for bill in previous_bills %}
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{ bill.id }}">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ bill.id }}" aria-expanded="false" aria-controls="collapse{{ bill.id }}">
-                        Bill #{{ bill.bill_number or 'N/A' }} - Date: {{ bill.bill_date or 'N/A' }} - Total Emission: {{ bill.total_emission_kgco2e }} kg CO2e
-                    </button>
-                </h2>
-                <div id="collapse{{ bill.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ bill.id }}" data-bs-parent="#previousBillsAccordion">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ url_for('uploaded_file', filename=bill.bill_file_path.split('/')[-1]) if bill.bill_file_path else '' }}" alt="Bill Image" class="img-fluid" style="max-height: 300px;">
-                            </div>
-                            <div class="col-md-8">
-                                <ul>
-                                    <li><strong>Bill Date:</strong> {{ bill.bill_date or 'N/A' }}</li>
-                                    <li><strong>Bill Number:</strong> {{ bill.bill_number or 'N/A' }}</li>
-                                    <li><strong>Electricity:</strong> {{ bill.electricity_usage_value or 'N/A' }} {{ bill.electricity_usage_unit or '' }}</li>
-                                    <li><strong>Water:</strong> {{ bill.water_usage_value or 'N/A' }} {{ bill.water_usage_unit or '' }}</li>
-                                    <li><strong>Methane:</strong> {{ bill.methane_usage_value or 'N/A' }} {{ bill.methane_usage_unit or '' }}</li>
-                                    <li><strong>Oil:</strong> {{ bill.oil_usage_value or 'N/A' }} {{ bill.oil_usage_unit or '' }}</li>
-                                    <li><strong>Coal:</strong> {{ bill.coal_usage_value or 'N/A' }} {{ bill.coal_usage_unit or '' }}</li>
-                                    <li><strong>Industrial Waste:</strong> {{ bill.industrial_waste_value or 'N/A' }} {{ bill.industrial_waste_unit or '' }}</li>
-                                    <li><strong>Trade CO2:</strong> {{ bill.trade_co2_value or 'N/A' }} tons</li>
-                                    <li><strong>Natural Gas:</strong> {{ bill.natural_gas_usage_value or 'N/A' }} {{ bill.natural_gas_usage_unit or '' }}</li>
-                                    <li><strong>Petrol:</strong> {{ bill.petrol_usage_value or 'N/A' }} {{ bill.petrol_usage_unit or '' }}</li>
-                                    <li><strong>Diesel:</strong> {{ bill.diesel_usage_value or 'N/A' }} {{ bill.diesel_usage_unit or '' }}</li>
-                                    <li><strong>Billing Period Start:</strong> {{ bill.billing_period_start or 'N/A' }}</li>
-                                    <li><strong>Billing Period End:</strong> {{ bill.billing_period_end or 'N/A' }}</li>
-                                    <li><strong>Total CO2 Tonnes:</strong> {{ bill.total_co2_tonnes }}</li>
-                                    <li><strong>Total Emission kg CO2e:</strong> {{ bill.total_emission_kgco2e }}</li>
-                                    <li><strong>Uploaded At:</strong> {{ bill.uploaded_at }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+
 <script>
     const ctxLine = document.getElementById('lineChart').getContext('2d');
     new Chart(ctxLine, {

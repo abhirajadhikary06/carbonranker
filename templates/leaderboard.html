@@ -17,12 +17,12 @@
         {% for entry in leaderboard %}
         <tr>
             <td>{{ entry.rank }}</td>
-            <td>
-                {% if entry.logo_path %}
-                <img src="{{ url_for('uploaded_file', filename=entry.logo_path.split('/')[-1]) }}" alt="Logo" width="30" height="30">
-                {% endif %}
-                {{ entry.company_name }}
-            </td>
+                <td>
+                    {% if entry.logo_path %}
+                    <img src="{{ url_for('uploaded_file', filename='logos/' ~ entry.logo_path.split('/')[-1]) }}" alt="Logo" width="30" height="30">
+                    {% endif %}
+                    {{ entry.company_name }}
+                </td>
             <td>{{ entry.score }}</td>
         </tr>
         {% endfor %}
